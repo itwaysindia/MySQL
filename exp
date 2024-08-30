@@ -1,0 +1,256 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Aug 30, 2024 at 05:56 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `student`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `batch`
+--
+
+CREATE TABLE `batch` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `seat` int(50) DEFAULT NULL,
+  `course_id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `batch`
+--
+
+INSERT INTO `batch` (`id`, `name`, `seat`, `course_id`) VALUES
+(1, 'CCC - 4 to 5PM', 12, 1),
+(2, 'CCC - 9 to 10AM', 12, 1),
+(3, 'CCC - 11 to 12PM', 12, 1),
+(4, 'MDCISM - 4 to 5PM', 12, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course`
+--
+
+CREATE TABLE `course` (
+  `id` int(100) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `fee` varchar(255) NOT NULL,
+  `duration` varchar(100) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`id`, `name`, `code`, `fee`, `duration`, `timestamp`) VALUES
+(1, 'CCC', '123CCC', '3000', '3 Months', '2024-08-27 03:28:53'),
+(2, 'ADCA', 'ADCA123', '6000', '6 Months', '2024-08-27 03:31:20'),
+(3, 'MDCISM', 'MD123', '12000', '18 Months', '2024-08-27 03:31:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fee`
+--
+
+CREATE TABLE `fee` (
+  `id` int(10) NOT NULL,
+  `student_id` int(100) NOT NULL,
+  `fee` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fee`
+--
+
+INSERT INTO `fee` (`id`, `student_id`, `fee`) VALUES
+(1, 1, '500'),
+(2, 1, '500'),
+(3, 11, '746'),
+(4, 11, '467'),
+(5, 11, '378');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profile`
+--
+
+CREATE TABLE `profile` (
+  `id` int(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `dob` date NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `contact` varchar(20) NOT NULL,
+  `batch_id` int(50) DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `profile`
+--
+
+INSERT INTO `profile` (`id`, `name`, `dob`, `fname`, `address`, `contact`, `batch_id`, `timestamp`) VALUES
+(1, 'Rahul Sharma', '1995-12-15', '', '', '9999999999', 3, '2024-08-27 03:54:44'),
+(2, 'Ram Manohar', '1989-09-09', 'Shyam Manohar', 'Lucknow', '9999999998', 3, '2024-08-27 03:54:44'),
+(10, 'Ananya Sharma', '1998-05-23', 'Rajesh Sharma', '32, Lajpat Nagar, New Delhi, Delhi', '+91 9876543210', 3, '2024-08-28 03:27:11'),
+(11, 'Rahul Patel', '2001-11-17', 'Suresh Patel', '45, MG Road, Ahmedabad, Gujarat', '+91 9988776655', 1, '2024-08-28 03:27:11'),
+(12, 'Priya Verma', '1995-03-02', 'Ramesh Verma', '12, Sector 18, Noida, Uttar Pradesh', '+91 9123456789', 2, '2024-08-28 03:27:11'),
+(13, 'Vikram Rao', '1999-07-15', 'Karan Rao', '56, Banjara Hills, Hyderabad, Telangana', '+91 9865432109', 4, '2024-08-28 03:27:11'),
+(14, 'Sneha Iyer', '2000-09-05', 'Anil Iyer', '78, Anna Nagar, Chennai, Tamil Nadu', '+91 9845123456', 1, '2024-08-28 03:27:11'),
+(15, 'Arjun Singh', '1997-01-27', 'Mahesh Singh', '23, Civil Lines, Jaipur, Rajasthan', '+91 9833445566', 3, '2024-08-28 03:27:11'),
+(16, 'Kavya Nair', '2002-06-10', 'Sunil Nair', '14, Fort Kochi, Kochi, Kerala', '+91 9786543210', 2, '2024-08-28 03:27:11'),
+(17, 'Aditya Deshmukh', '1996-04-19', 'Vijay Deshmukh', '89, Koregaon Park, Pune, Maharashtra', '+91 9887766554', 4, '2024-08-28 03:27:11'),
+(18, 'Meera Gupta', '1998-12-03', 'Arun Gupta', '50, Park Street, Kolkata, West Bengal', '+91 9123344556', 1, '2024-08-28 03:27:11'),
+(19, 'Rohan Kulkarni', '2000-08-22', 'Prakash Kulkarni', '67, JP Nagar, Bangalore, Karnataka', '+91 9876654321', 2, '2024-08-28 03:27:11'),
+(20, 'Ravi Kumar', '1995-02-15', 'Sanjay Kumar', '22, Ashok Nagar, Patna, Bihar', '+91 9123456789', 1, '2024-08-28 03:37:00'),
+(21, 'Sonal Patel', '1999-03-10', 'Ramesh Patel', '56, GIDC, Vadodara, Gujarat', '+91 9988776655', 2, '2024-08-28 03:37:00'),
+(22, 'Pooja Sharma', '1997-08-20', 'Vikram Sharma', '45, Dwarka, New Delhi, Delhi', '+91 9876543210', 3, '2024-08-28 03:37:00'),
+(23, 'Arvind Nair', '2001-12-05', 'Mohan Nair', '78, MG Road, Ernakulam, Kerala', '+91 9123344556', 4, '2024-08-28 03:37:00'),
+(24, 'Neha Gupta', '1998-07-12', 'Suresh Gupta', '12, Gomti Nagar, Lucknow, Uttar Pradesh', '+91 9345678901', 1, '2024-08-28 03:37:00'),
+(25, 'Aman Singh', '2000-01-25', 'Mahendra Singh', '34, Lal Kothi, Jaipur, Rajasthan', '+91 9876541234', 2, '2024-08-28 03:37:00'),
+(26, 'Kriti Verma', '1996-06-30', 'Anil Verma', '56, Sector 22, Chandigarh, Punjab', '+91 9765432109', 3, '2024-08-28 03:37:00'),
+(27, 'Rohan Joshi', '1995-11-15', 'Satish Joshi', '89, Baner, Pune, Maharashtra', '+91 9887766554', 4, '2024-08-28 03:37:00'),
+(28, 'Priya Deshmukh', '2002-04-19', 'Vinod Deshmukh', '23, Whitefield, Bangalore, Karnataka', '+91 9876543211', 1, '2024-08-28 03:37:00'),
+(29, 'Manish Rao', '1997-09-22', 'Rajesh Rao', '14, Park Street, Kolkata, West Bengal', '+91 9123456788', 2, '2024-08-28 03:37:00'),
+(30, 'Sneha Kapoor', '1996-10-05', 'Ravi Kapoor', '67, Anna Salai, Chennai, Tamil Nadu', '+91 9345678910', 3, '2024-08-28 03:37:00'),
+(31, 'Vikash Singh', '1998-12-14', 'Arun Singh', '45, Civil Lines, Allahabad, Uttar Pradesh', '+91 9345678902', 4, '2024-08-28 03:37:00'),
+(32, 'Simran Kaur', '2001-07-28', 'Balbir Kaur', '89, Phase 5, Mohali, Punjab', '+91 9876541235', 1, '2024-08-28 03:37:00'),
+(33, 'Aditi Sharma', '2000-11-18', 'Sunil Sharma', '12, Vasant Kunj, New Delhi, Delhi', '+91 9123344557', 2, '2024-08-28 03:37:00'),
+(34, 'Rohit Mehta', '1996-08-06', 'Pradeep Mehta', '34, Andheri West, Mumbai, Maharashtra', '+91 9876541236', 3, '2024-08-28 03:37:00'),
+(35, 'Madhuri Iyer', '1997-02-27', 'Gopal Iyer', '56, T. Nagar, Chennai, Tamil Nadu', '+91 9345678911', 4, '2024-08-28 03:37:00'),
+(36, 'Ajay Tripathi', '1995-04-14', 'Vijay Tripathi', '78, Gomti Nagar, Lucknow, Uttar Pradesh', '+91 9765432108', 1, '2024-08-28 03:37:00'),
+(37, 'Kavita Nair', '2001-10-09', 'Harish Nair', '23, Fort Kochi, Kochi, Kerala', '+91 9345678903', 2, '2024-08-28 03:37:00'),
+(38, 'Ramesh Kulkarni', '1998-03-25', 'Prakash Kulkarni', '45, Koregaon Park, Pune, Maharashtra', '+91 9876543212', 3, '2024-08-28 03:37:00'),
+(39, 'Poonam Joshi', '2000-05-12', 'Vinod Joshi', '67, JP Nagar, Bangalore, Karnataka', '+91 9123344558', 4, '2024-08-28 03:37:00'),
+(40, 'Ashish Verma', '1999-09-07', 'Rajeev Verma', '12, Banjara Hills, Hyderabad, Telangana', '+91 9876543213', 1, '2024-08-28 03:37:00'),
+(41, 'Nisha Desai', '1996-12-03', 'Dilip Desai', '34, Ellis Bridge, Ahmedabad, Gujarat', '+91 9345678904', 2, '2024-08-28 03:37:00'),
+(42, 'Vikas Kumar', '2001-06-17', 'Arun Kumar', '45, Lal Darwaja, Surat, Gujarat', '+91 9123456787', 3, '2024-08-28 03:37:00'),
+(43, 'Jyoti Singh', '1997-01-30', 'Mahesh Singh', '56, Hazratganj, Lucknow, Uttar Pradesh', '+91 9876541237', 4, '2024-08-28 03:37:00'),
+(44, 'Nitin Reddy', '2002-02-19', 'Surya Reddy', '89, Banjara Hills, Hyderabad, Telangana', '+91 9876543214', 1, '2024-08-28 03:37:00'),
+(45, 'Kiran Sharma', '1995-05-22', 'Ashok Sharma', '23, Lajpat Nagar, New Delhi, Delhi', '+91 9345678912', 2, '2024-08-28 03:37:00'),
+(46, 'Rahul Nair', '1998-10-11', 'Ramesh Nair', '45, Marine Drive, Mumbai, Maharashtra', '+91 9345678905', 3, '2024-08-28 03:37:00'),
+(47, 'Sneha Singh', '2000-08-26', 'Anil Singh', '12, Sector 18, Noida, Uttar Pradesh', '+91 9876543215', 4, '2024-08-28 03:37:00'),
+(48, 'Akhil Mehta', '1996-09-15', 'Mahesh Mehta', '67, Khar West, Mumbai, Maharashtra', '+91 9123344559', 1, '2024-08-28 03:37:00'),
+(49, 'Pooja Chawla', '1999-12-23', 'Ravi Chawla', '34, Park Street, Kolkata, West Bengal', '+91 9876543216', 2, '2024-08-28 03:37:00'),
+(50, 'Ravi Prasad', '2001-03-05', 'Vikram Prasad', '56, MG Road, Ernakulam, Kerala', '+91 9345678913', 3, '2024-08-28 03:37:00'),
+(51, 'Sakshi Gupta', '1995-04-30', 'Rakesh Gupta', '23, Malviya Nagar, Jaipur, Rajasthan', '+91 9123456786', 4, '2024-08-28 03:37:00'),
+(52, 'Pranav Desai', '1997-11-21', 'Dinesh Desai', '12, Paldi, Ahmedabad, Gujarat', '+91 9876541238', 1, '2024-08-28 03:37:00'),
+(53, 'Ritu Kapoor', '2002-05-08', 'Vinod Kapoor', '45, Banjara Hills, Hyderabad, Telangana', '+91 9876543217', 2, '2024-08-28 03:37:00'),
+(54, 'Sandeep Kumar', '1998-06-19', 'Mahendra Kumar', '56, Gomti Nagar, Lucknow, Uttar Pradesh', '+91 9345678906', 3, '2024-08-28 03:37:00'),
+(55, 'Kriti Rao', '2000-10-29', 'Vishal Rao', '89, JP Nagar, Bangalore, Karnataka', '+91 9345678914', 4, '2024-08-28 03:37:00'),
+(56, 'Aarti Sharma', '1996-03-18', 'Suresh Sharma', '34, Sector 21, Chandigarh, Punjab', '+91 9876543218', 1, '2024-08-28 03:37:00'),
+(57, 'Vijay Singh', '1999-07-04', 'Rakesh Singh', '45, Lal Kothi, Jaipur, Rajasthan', '+91 9123456785', 2, '2024-08-28 03:37:00'),
+(58, 'Neha Sinha', '2001-02-12', 'Sunil Sinha', '12, Sector 22, Chandigarh, Punjab', '+91 9876541239', 3, '2024-08-28 03:37:00'),
+(59, 'Gaurav Joshi', '1995-09-09', 'Anil Joshi', '67, Marine Drive, Mumbai, Maharashtra', '+91 9876543219', 4, '2024-08-28 03:37:00'),
+(60, 'Monika Verma', '1997-12-27', 'Rajesh Verma', '89, Whitefield, Bangalore, Karnataka', '+91 9345678907', 1, '2024-08-28 03:37:00'),
+(61, 'Anil Kumar', '2000-04-15', 'Mohan Kumar', '23, Baner, Pune, Maharashtra', '+91 9876543220', 2, '2024-08-28 03:37:00'),
+(62, 'Pooja Patil', '1996-11-05', 'Ravi Patil', '56, Banjara Hills, Hyderabad, Telangana', '+91 9876541240', 3, '2024-08-28 03:37:00'),
+(63, 'Rahul Iyer', '1998-03-23', 'Vijay Iyer', '45, T. Nagar, Chennai, Tamil Nadu', '+91 9345678915', 4, '2024-08-28 03:37:00'),
+(64, 'Kavya Reddy', '2001-08-17', 'Anil Reddy', '89, MG Road, Ernakulam, Kerala', '+91 9876543221', 1, '2024-08-28 03:37:00'),
+(65, 'Rohan Kumar', '1997-01-10', 'Suresh Kumar', '12, Malviya Nagar, Jaipur, Rajasthan', '+91 9123456784', 2, '2024-08-28 03:37:00'),
+(66, 'Preeti Sharma', '2002-12-30', 'Rakesh Sharma', '34, Ashok Nagar, Patna, Bihar', '+91 9876541241', 3, '2024-08-28 03:37:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_login`
+--
+
+CREATE TABLE `student_login` (
+  `id` int(11) NOT NULL,
+  `profile_id` int(100) DEFAULT NULL,
+  `username` varchar(60) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `contact` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `email` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `batch`
+--
+ALTER TABLE `batch`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fee`
+--
+ALTER TABLE `fee`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `profile`
+--
+ALTER TABLE `profile`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `student_login`
+--
+ALTER TABLE `student_login`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `profile_id` (`profile_id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `batch`
+--
+ALTER TABLE `batch`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `course`
+--
+ALTER TABLE `course`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `fee`
+--
+ALTER TABLE `fee`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `profile`
+--
+ALTER TABLE `profile`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT for table `student_login`
+--
+ALTER TABLE `student_login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
